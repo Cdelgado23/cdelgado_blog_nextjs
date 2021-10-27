@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Navigation from "./Navigation";
 
+
+
 type Props = {
   children: React.ReactNode;
 };
@@ -14,21 +16,31 @@ export default function Layout({ children }: Props) {
         <link rel="apple-touch-icon" href="/icon.png" />
         <meta name="theme-color" content="#fff" />
       </Head>
-      <nav>
+      <nav className="nav">
         <Navigation />
       </nav>
       <main>{children}</main>
       <style jsx>
         {`
           .root {
-            display: block;
-            padding: 4rem 0;
             box-sizing: border-box;
-            height: 100%;
-          }
+
+            display: flex;
+            flex-direction: column;    
+            min-height:100%;
+            max-height:fit-content;
+            background-color: #effff3;
+            position: relative; 
+            background-size: cover;
+        }
+      
+
+        .root * {
+          position: relative;
+        }
+
           main {
             display: flex;
-            min-height: 100%;
           }
           @media (min-width: 769px) {
             .root {
@@ -38,6 +50,10 @@ export default function Layout({ children }: Props) {
             main {
               flex: 1 0 auto;
             }
+          }
+          .nav {
+            display: flex;
+            flex-direction: row;
           }
         `}
       </style>

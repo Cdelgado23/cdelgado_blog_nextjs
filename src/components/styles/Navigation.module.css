@@ -1,0 +1,27 @@
+
+
+.nav_collection{
+  width: 100%;
+  text-align: right;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  z-index: 1;
+  transition: opacity 200ms;
+}
+.active ul {
+  opacity: 1;
+  transform: translateY(0);
+}
+.nav_collection li {
+  font-size: 2rem;
+  padding: 0 1.5rem 0 0;
+}
+
+.nav_collection li:last-child {
+  margin-bottom: 0;
+}
+.active {
+  color: #222;
+}
