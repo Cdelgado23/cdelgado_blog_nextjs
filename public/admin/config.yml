@@ -108,7 +108,7 @@ collections:
       - label: "Featured Image"
         name: "thumbnail"
         widget: "image"
-        default: "https://re-mm-assets.s3.amazonaws.com/product_photo/46595/large_large_Poly_Lime_374u_1471509935.jpg"
+        default: "public/images/green_placeholder.jpg"
       - label: "Summary"
         name: "summary"
         widget: "string"
