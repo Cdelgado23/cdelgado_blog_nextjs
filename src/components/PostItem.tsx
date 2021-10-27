@@ -3,7 +3,7 @@ import Date from "./Date";
 import Link from "next/link";
 import { parseISO } from "date-fns";
 
-import Styles from "./styles/Postitem.module.css"
+import Styles from "./styles/PostItem.module.css"
 
 type Props = {
   post: PostContent;
