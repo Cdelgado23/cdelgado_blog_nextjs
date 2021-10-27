@@ -6,7 +6,6 @@ import { SocialList } from "../components/SocialList";
 
 import styles from './index.module.css';
 import cn from 'classnames'
-import Image from 'next/image'
 
 export default function Index() {
   return (
@@ -17,12 +16,7 @@ export default function Index() {
       <div className={styles.container}>
         <div>
           <div className={styles.pic}>
-            <Image 
-              src="/images/profile.jpg" // Route of the image file
-              height={150} // Desired size with correct aspect ratio
-              width={150} // Desired size with correct aspect ratio
-              alt="Your Name"
-            />
+            <img src="/images/profile.jpg" alt="Profile picture" width="150" height="150"/>
           </div>
 
 
