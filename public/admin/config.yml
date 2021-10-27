@@ -5,6 +5,7 @@ media_folder: public/images
 public_folder: /images
 publish_mode: editorial_workflow
 
+
 collections:
   - name: "config"
     label: "Config"
@@ -103,6 +104,12 @@ collections:
         widget: "string"
       - label: "Title"
         name: "title"
+        widget: "string"
+      - label: "Featured Image"
+        name: "thumbnail"
+        widget: "image"
+      - label: "Summary"
+        name: "summary"
         widget: "string"
       - label: "Publish Date"
         name: "date"
