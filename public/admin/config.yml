@@ -108,7 +108,7 @@ collections:
       - label: "Featured Image"
         name: "thumbnail"
         widget: "image"
-        default: "/images/green_placeholder.jpg"
+        default: "/public/images/green_placeholder.jpg"
       - label: "Summary"
         name: "summary"
         widget: "string"
