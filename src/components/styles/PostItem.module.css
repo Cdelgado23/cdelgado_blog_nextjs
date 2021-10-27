@@ -2,6 +2,8 @@
     color: #222;
     display: flex;
     flex-direction: row;
+    background-color: #fcfcfc;
+    border-radius: 50px;
 }
 .anchor h2 {
     margin: 0;
@@ -10,10 +12,7 @@
 .anchor img {
     width: 150px;
     height: 150px;
-    border-style: solid;
     border-radius: 20%;
-    border-color: aquamarine;
-    background-color: beige;
 }
 .content{
     padding: 1%;
