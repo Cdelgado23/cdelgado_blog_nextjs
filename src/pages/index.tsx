@@ -20,10 +20,10 @@ export default function Index() {
           Hello, welcome to my site!
         </h1>
         <div style={{display:"flex", flexDirection:"row", alignItems:"center", flexWrap: "wrap", justifyContent:"center"}}>
-          <DataCard color="#FFFF">
+          <DataCard color='#FFFF'>
             <img src="/images/profile.jpg" alt="Profile picture" className={styles.profPic} />
           </DataCard>
-          <DataCard color="#FFFF">
+          <DataCard color='#FFFF'>
             <h2 style={{ margin: "0" }}>
               About me
             </h2>
@@ -53,7 +53,7 @@ type PropsData = {
 
 function DataCard(props: PropsData) {
   return (
-    <Paper elevation={3} className={styles.dataCard} style={{ backgroundColor: props.color }}>
+    <Paper elevation={3} className={styles.dataCard} style={{ backgroundColor: "#FFFF" }}>
       {props.children}
     </Paper>
   );
