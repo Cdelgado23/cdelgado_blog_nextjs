@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { TagContent } from "../lib/tags";
+import { Chip } from '@mui/material';
 
 type Props = {
   tag: TagContent;
@@ -7,7 +8,7 @@ type Props = {
 export default function Tag({ tag }: Props) {
   return (
     <Link href={"/posts/tags/[[...slug]]"} as={`/posts/tags/${tag.slug}`}>
-      <a>{"#" + tag.name}</a>
+      <Chip label={"#" + tag.name} variant="outlined"/>
     </Link>
   );
 }

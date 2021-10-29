@@ -6,6 +6,7 @@ import { useState } from "react";
 import styles from './styles/Navigation.module.css';
 import cn from 'classnames'
 
+
 export default function Navigation() {
   const router = useRouter();
   const [active, setActive] = useState(false);
@@ -25,6 +26,17 @@ export default function Navigation() {
         </Link>
       </li>
       <li >
+        <Link href="/cv">
+          <a
+            className={cn({
+              [styles.active]: router.pathname === "/cv"
+            })}
+          >
+            CV
+          </a>
+        </Link>
+      </li>
+      <li >
         <Link href="/posts">
           <a
             className={cn({
@@ -32,6 +44,17 @@ export default function Navigation() {
             })}
           >
             blog
+          </a>
+        </Link>
+      </li>
+      <li >
+        <Link href="/projects">
+          <a
+            className={cn({
+              [styles.active]: router.pathname.startsWith("/projects")
+            })}
+          >
+            projects
           </a>
         </Link>
       </li>

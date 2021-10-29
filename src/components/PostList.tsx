@@ -65,6 +65,9 @@ export default function PostList({ posts, tags, pagination }: Props) {
         }
         .post-list {
           flex: 1 0 auto;
+          display: flex;
+          flex-wrap: wrap;
+          flex-direction: row;
         }
         .categories {
           display: none;
