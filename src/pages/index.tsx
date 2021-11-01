@@ -4,10 +4,10 @@ import OpenGraphMeta from "../components/meta/OpenGraphMeta";
 import TwitterCardMeta from "../components/meta/TwitterCardMeta";
 import { SocialList } from "../components/SocialList";
 
-import Flippy, { FrontSide, BackSide } from 'react-flippy';
-import { Paper } from '@mui/material';
-
+import FlipCard from "../components/FlipCard";
+import DataCard from "../components/DataCard"
 import styles from './index.module.css';
+import { Paper } from '@mui/material';
 
 export default function Index() {
   return (
@@ -17,73 +17,71 @@ export default function Index() {
       <TwitterCardMeta url={"/"} />
       <div className={styles.container}>
         <h1>
-          Hello, welcome to my site!
+          Hello, this is Carlos' site!
         </h1>
-        <div style={{display:"flex", flexDirection:"row", alignItems:"center", flexWrap: "wrap", justifyContent:"center"}}>
-          <DataCard color='#FFFF'>
-            <img src="/images/profile.jpg" alt="Profile picture" className={styles.profPic} />
-          </DataCard>
-          <DataCard color='#FFFF'>
-            <h2 style={{ margin: "0" }}>
-              About me
-            </h2>
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", flexWrap: "wrap", gap: "1.5rem" }}>
+          <Paper className={styles.profPic} elevation={3}>
+            <img src="/images/profile.jpg" alt="Profile picture" />
+          </Paper>
+          <DataCard color='#FFFF' header="About me">
             <div className={styles.textList}>
-              <p>🚀 I am a Software Engineer, I build "stuffs".</p>
-              <p>🐣 Curious about averything.</p>
-              <p>📚 Good autodidact skills, learning day after day.</p>
+              <p>🚀 I am a Software Engineer, I build "stuff".</p>
+              <p>🐣 Curious and restless mind.</p>
+              <p>⚙️ Team oriented, together we go further.</p>
+            </div>
+          </DataCard>
+          <DataCard color='#FFFF' header="Contact me">
+            <SocialList />
+          </DataCard>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "1.5rem", justifyContent:"center", }}>
+
+          <DataCard color="#FFFF" header="Working on...">
+            <h3 style={{ margin: "0" }}>Hello</h3>
+            <div className={styles.anchor}>
+              <div className={styles.overlayedContent} style={{ display: "flex", flexDirection: "column", justifyContent: "start", alignItems: "center" }}>
+                <img src="/images/mountains_background.jpg" className={styles.projectImg} />
+              </div>
+              <div className={styles.overlay}>
+                <div className={styles.overlayText}>
+                  <h2 >hello</h2>
+                  <p>summary</p>
+                </div>
+              </div>
+            </div>
+          </DataCard>
+          <DataCard color="#FFFF" header="To come...">
+            <h3 style={{ margin: "0" }}>Hello</h3>
+            <div className={styles.anchor}>
+              <div className={styles.overlayedContent} style={{ display: "flex", flexDirection: "column", justifyContent: "start", alignItems: "center" }}>
+                <img src="/images/mountains_background.jpg" className={styles.projectImg} />
+              </div>
+              <div className={styles.overlay}>
+                <div className={styles.overlayText}>
+                  <h2 >hello</h2>
+                  <p>summary</p>
+                </div>
+              </div>
+            </div>
+          </DataCard>
+          <DataCard color="#FFFF" header="To come...">
+            <h3 style={{ margin: "0" }}>Hello</h3>
+            <div className={styles.anchor}>
+              <div className={styles.overlayedContent} style={{ display: "flex", flexDirection: "column", justifyContent: "start", alignItems: "center" }}>
+                <img src="/images/mountains_background.jpg" className={styles.projectImg} />
+              </div>
+              <div className={styles.overlay}>
+                <div className={styles.overlayText}>
+                  <h2 >hello</h2>
+                  <p>summary</p>
+                </div>
+              </div>
             </div>
           </DataCard>
         </div>
 
-        <div className={styles.cardsContainer}>
-          <Card cardFront="Want to know me better?" cardBack="You can have a look at my full CV on the CV Section!" />
-        </div>
-
       </div>
     </Layout>
-  );
-}
-
-
-
-type PropsData = {
-  color: String;
-  children: React.ReactNode;
-};
-
-function DataCard(props: PropsData) {
-  return (
-    <Paper elevation={3} className={styles.dataCard} style={{ backgroundColor: "#FFFF" }}>
-      {props.children}
-    </Paper>
-  );
-}
-type Props = {
-  cardFront: String;
-  cardBack: String;
-};
-function Card(props: Props) {
-  return (
-
-    <Flippy
-      flipOnHover={true} // default false
-      flipOnClick={false} // default false
-      flipDirection="horizontal" // horizontal or vertical
-      style={{ height: "fit-content" }}
-    >
-      <FrontSide style={{ borderRadius: "25px", height: "100%" }}>
-
-        <div className={styles.presentationCardFront}>
-          {props.cardFront}
-        </div>
-
-      </FrontSide>
-      <BackSide
-        style={{ borderRadius: "25px", backgroundColor: "#e8e8e8", height: "fit-content" }}
-      >
-        {props.cardBack}
-      </BackSide>
-    </Flippy >
-
   );
 }

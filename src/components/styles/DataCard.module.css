@@ -1,0 +1,17 @@
+.dataCard{
+    width: "fit-content";
+    border-radius: 20px;
+    
+    display: flex;
+    flex-flow: column;
+  }
+
+
+.cardContent{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: space-around; 
+    flex: 1 1 auto;
+    padding: 1rem;
+}

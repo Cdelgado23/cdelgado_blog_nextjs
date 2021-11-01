@@ -12,40 +12,6 @@ type Props = {
 };
 export default function PostItem({ post }: Props) {
   return (
-
-    /*
-    <Card sx={{ width: 300, height: 300 }}>
-      <CardActionArea>
-        {
-          post.thumbnail!=null?
-          <CardMedia
-          component="img"
-          height="150"
-          image={post.thumbnail}
-          alt={post.title}
-          />
-          :
-          <CardMedia
-          component="img"
-          height="200"
-          image="/images/green_placeholder.jpg"
-          alt={post.title}
-          />
-        }
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {post.title}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {
-              post.summary
-            }
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-    */
-
     <Link href={"/posts/" + post.slug} >
       <a className={Styles.anchor}>
         <Paper elevation={3} className={Styles.paperCard}>
@@ -69,6 +35,5 @@ export default function PostItem({ post }: Props) {
         </div>
       </a>
     </Link>
-
   );
 }
