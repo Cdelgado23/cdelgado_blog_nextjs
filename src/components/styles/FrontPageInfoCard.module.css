@@ -45,8 +45,11 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
-  
+
   .projectImg{
     border-radius: 20px;
     width:15rem;
