@@ -1,0 +1,10 @@
+{
+  "information_cards": [
+    {
+      "card_title": "Card Test",
+      "card_subtitle": "This is a Card Test",
+      "card_summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam metus purus, vehicula non fermentum nec, semper in augue. Etiam blandit nisl et diam ultricies dapibus. In tincidunt mi at mi sodales malesuada.",
+      "card_image": "/images/netlifycms.jpg"
+    }
+  ]
+}
