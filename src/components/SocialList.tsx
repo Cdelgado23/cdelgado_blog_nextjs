@@ -7,7 +7,6 @@ import EmailIcon from '@mui/icons-material/Email';
 
 import config from "../lib/config";
 
-import FlipCard from "./FlipCard";
 
 export function SocialList({ }) {
   const twitter = <TwitterIcon style={{ width: "2.5rem", height: "2.5rem" }} fill={"#FFFF"} />;
@@ -34,8 +33,8 @@ export function SocialList({ }) {
         {github}
       </a>
       <a
-        title="Linked In"
-        href={`https://github.com/${config.github_account}`}
+        title={config.linkedin_account}
+        href={`https://www.linkedin.com/in/${config.linkedin_account}`}
         target="_blank"
         rel="noopener"
       >
@@ -43,8 +42,8 @@ export function SocialList({ }) {
       </a>
 
       <a
-        title="Email"
-        href={`https://github.com/${config.github_account}`}
+        title={config.email_direction}
+        href={config.email_direction}
         target="_blank"
         rel="noopener"
       >
