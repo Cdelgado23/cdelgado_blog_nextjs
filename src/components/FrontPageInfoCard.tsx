@@ -10,7 +10,7 @@ type Props = {
 export default function InfoCard({ card }: Props) {
     return (
         <DataCard color="#FFFF" header={card.card_title}>
-            <h3 style={{ margin: "0" }}>{card.card_subtitle}</h3>
+            <h3 style={{ margin: "0 0 0.5rem 0" }}>{card.card_subtitle}</h3>
             <div className={styles.anchor}>
                 <div className={styles.overlayedContent} style={{ display: "flex", flexDirection: "column", justifyContent: "start", alignItems: "center" }}>
                     <img src={card.card_image} className={styles.projectImg} />
