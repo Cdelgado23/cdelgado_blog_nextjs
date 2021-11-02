@@ -9,7 +9,16 @@ import DataCard from "../components/DataCard"
 import styles from './index.module.css';
 import { Paper } from '@mui/material';
 
-export default function Index() {
+import { GetStaticProps } from "next";
+import { listCards, informationCardContent } from "../lib/FrontPage";
+import InfoCard from "../components/FrontPageInfoCard"
+
+
+type Props = {
+  cards: informationCardContent[];
+};
+
+export default function Index({ cards }: Props) {
   return (
     <Layout>
       <BasicMeta url={"/"} />
@@ -35,53 +44,23 @@ export default function Index() {
           </DataCard>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "2rem", justifyContent:"center", }}>
-
-          <DataCard color="#FFFF" header="Working on...">
-            <h3 style={{ margin: "0" }}>Hello</h3>
-            <div className={styles.anchor}>
-              <div className={styles.overlayedContent} style={{ display: "flex", flexDirection: "column", justifyContent: "start", alignItems: "center" }}>
-                <img src="/images/mountains_background.jpg" className={styles.projectImg} />
-              </div>
-              <div className={styles.overlay}>
-                <div className={styles.overlayText}>
-                  <h2 >hello</h2>
-                  <p>summary</p>
-                </div>
-              </div>
-            </div>
-          </DataCard>
-          <DataCard color="#FFFF" header="To come...">
-            <h3 style={{ margin: "0" }}>Hello</h3>
-            <div className={styles.anchor}>
-              <div className={styles.overlayedContent} style={{ display: "flex", flexDirection: "column", justifyContent: "start", alignItems: "center" }}>
-                <img src="/images/mountains_background.jpg" className={styles.projectImg} />
-              </div>
-              <div className={styles.overlay}>
-                <div className={styles.overlayText}>
-                  <h2 >hello</h2>
-                  <p>summary</p>
-                </div>
-              </div>
-            </div>
-          </DataCard>
-          <DataCard color="#FFFF" header="To come...">
-            <h3 style={{ margin: "0" }}>Hello</h3>
-            <div className={styles.anchor}>
-              <div className={styles.overlayedContent} style={{ display: "flex", flexDirection: "column", justifyContent: "start", alignItems: "center" }}>
-                <img src="/images/mountains_background.jpg" className={styles.projectImg} />
-              </div>
-              <div className={styles.overlay}>
-                <div className={styles.overlayText}>
-                  <h2 >hello</h2>
-                  <p>summary</p>
-                </div>
-              </div>
-            </div>
-          </DataCard>
+        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "2rem", justifyContent: "center", }}>
+        {cards.map((cd, i) => (
+            <InfoCard card={cd} />
+        ))}
         </div>
 
       </div>
     </Layout>
   );
 }
+
+
+export const getStaticProps: GetStaticProps = async () => {
+  const cards = listCards();
+  return {
+    props: {
+      cards
+    },
+  };
+};

@@ -169,6 +169,9 @@ collections:
             name: information_cards
             widget: list
             fields:
+              - label: "Card Slug"
+                name: "card_slug"
+                widget: "string"
               - label: "Card Title"
                 name: "card_title"
                 widget: "string"
