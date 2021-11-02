@@ -42,6 +42,12 @@ collections:
           - label: "GitHub account"
             name: "github_account"
             widget: "string"
+          - label: "LinkedIn account"
+            name: "linkedin_account"
+            widget: "string"
+          - label: "Email direction"
+            name: "email_direction"
+            widget: "string"
 
   - name: "meta"
     label: "Meta"
@@ -147,3 +153,27 @@ collections:
       - label: "Body"
         name: "body"
         widget: "markdown"
+
+  - name: "frontpage"
+    label: "Front page"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "frontCards"
+        label: "Information Cards"
+        file: "fronInfoCards.json"
+        description: "Information cards shown in the front page"
+        fields:
+          - label: "Card Title"
+            name: "card_title"
+            widget: "string"
+          - label: "Card Subtitle"
+            name: "card_subtitle"
+            widget: "string"
+          - label: "Card Summary"
+            name: "card_summary"
+            widget: "string"
+          - label: "Featured Image"
+            name: "card_image"
+            widget: "image"

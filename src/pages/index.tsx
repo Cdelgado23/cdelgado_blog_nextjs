@@ -35,7 +35,7 @@ export default function Index() {
           </DataCard>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "1.5rem", justifyContent:"center", }}>
+        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "2rem", justifyContent:"center", }}>
 
           <DataCard color="#FFFF" header="Working on...">
             <h3 style={{ margin: "0" }}>Hello</h3>
