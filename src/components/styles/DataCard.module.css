@@ -1,6 +1,6 @@
 .dataCard{
     width: "fit-content";
-    border-radius: 20px;
+    border-radius: 4px;
     
     display: flex;
     flex-flow: column;
