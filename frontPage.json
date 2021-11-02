@@ -6,6 +6,13 @@
       "card_summary": "Focused on personal projects, but open to telework opportunities :)",
       "card_image": "/images/smile_icon.png",
       "card_slug": "working_on"
+    },
+    {
+      "card_slug": "to_come",
+      "card_title": "To come...",
+      "card_subtitle": "Personal Website",
+      "card_summary": "Pre-rendered static web site made with Next.js.",
+      "card_image": "/images/nextjs_netlify_cms.png"
     }
   ]
 }
