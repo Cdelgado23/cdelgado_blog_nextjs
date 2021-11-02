@@ -1,11 +1,9 @@
 {
-  "base_url": "https://wutali-nextjs-netlify-blog.netlify.app",
   "site_title": "Cdelgado's place",
-  "site_description": "Carlos Delgado Guiberteau's personal website",
+  "twitter_account": "@SrArdilla23",
+  "base_url": "https://wutali-nextjs-netlify-blog.netlify.app",
   "site_keywords": [
-    {
-      "keyword": "Next.js"
-    },
+    "Nextjs",
     {
       "keyword": "Netlify"
     },
@@ -13,7 +11,9 @@
       "keyword": "React"
     }
   ],
-  "posts_per_page": 5,
-  "twitter_account": "@SrArdilla23",
-  "github_account": "Cdelgado23"
+  "site_description": "Carlos Delgado Guiberteau's personal website",
+  "linkedin_account": "carlos-delgado-guiberteau-55a29415b",
+  "github_account": "Cdelgado23",
+  "email_direction": "cdelgadoguiberteau@gmail.com",
+  "posts_per_page": 5
 }
