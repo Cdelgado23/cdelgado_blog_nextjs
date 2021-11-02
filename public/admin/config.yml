@@ -160,20 +160,24 @@ collections:
     editor:
       preview: false
     files:
-      - name: "frontCards"
-        label: "Information Cards"
-        file: "fronInfoCards.json"
-        description: "Information cards shown in the front page"
+      - name: "frontPage"
+        label: "Front Page"
+        file: "frontPage.json"
+        description: "Information shown in the front page"
         fields:
-          - label: "Card Title"
-            name: "card_title"
-            widget: "string"
-          - label: "Card Subtitle"
-            name: "card_subtitle"
-            widget: "string"
-          - label: "Card Summary"
-            name: "card_summary"
-            widget: "string"
-          - label: "Featured Image"
-            name: "card_image"
-            widget: "image"
+          - label: Information Cards
+            name: information_cards
+            widget: list
+            fields:
+              - label: "Card Title"
+                name: "card_title"
+                widget: "string"
+              - label: "Card Subtitle"
+                name: "card_subtitle"
+                widget: "string"
+              - label: "Card Summary"
+                name: "card_summary"
+                widget: "string"
+              - label: "Featured Image"
+                name: "card_image"
+                widget: "image"
