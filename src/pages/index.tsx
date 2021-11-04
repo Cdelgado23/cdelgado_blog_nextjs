@@ -44,7 +44,7 @@ export default function Index({ cards }: Props) {
           </DataCard>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "2rem", justifyContent: "center", }}>
+        <div className={styles.cardsContainer}>
         {cards.map((cd, i) => (
             <InfoCard card={cd} />
         ))}

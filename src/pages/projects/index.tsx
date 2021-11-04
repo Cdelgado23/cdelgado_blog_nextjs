@@ -5,7 +5,6 @@ import TwitterCardMeta from "../../components/meta/TwitterCardMeta";
 import { SocialList } from "../../components/SocialList";
 
 import styles from '../index.module.css';
-import cn from 'classnames'
 
 export default function Index() {
   return (

@@ -7,6 +7,8 @@ publish_mode: editorial_workflow
 
 
 collections:
+
+#config collection
   - name: "config"
     label: "Config"
     delete: false
@@ -49,6 +51,7 @@ collections:
             name: "email_direction"
             widget: "string"
 
+  #meta collection
   - name: "meta"
     label: "Meta"
     delete: false
@@ -95,6 +98,79 @@ collections:
                 widget: "string"
                 hint: "Tag name for displaying on the site"
 
+  - name: "projects"
+    label: "Projects"
+    folder: "content/projects/"
+    extension: "mdx"
+    format: "frontmatter"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: slug
+    summary: "{{title}}"
+    fields:
+      - label: "Slug"
+        name: "slug"
+        widget: "string"
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Featured Image"
+        name: "thumbnail"
+        widget: "image"
+        default: "public/images/green_placeholder.jpg"
+      - label: "Start Date"
+        name: "start_date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        dateFormat: "YYYY-MM-DD"
+        timeFormat: false
+      - label: "End Date"
+        name: "end_date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        dateFormat: "YYYY-MM-DD"
+        timeFormat: false
+      - label: "Repository"
+        name: "repository"
+        widget: "string"
+      - label: Author
+        name: "author"
+        widget: relation
+        collection: "meta"
+        file: "authors"
+        searchFields:
+          - "authors.*.name"
+        displayFields:
+          - "authors.*.name"
+        valueField: "authors.*.slug"
+      - label: Technologies
+        label_singular: "Technology"
+        name: "technologies"
+        widget: list
+        summary: "{{fields.technology}}"
+        field:
+          label: Technology
+          name: technology
+          widget: String
+      - label: "Related Posts"
+        label_singular: "Related Post"
+        name: "related_posts"
+        widget: list
+        summary: "{{fields.related_posts}}"
+        field:
+          label: "Related post"
+          name: related_post
+          widget: relation
+          collection: "posts"
+          searchFields:
+            - "posts.*.title"
+          displayFields:
+            - "posts.*.title"
+          valueField: "posts.*.slug"
+        - label: "Body"
+          name: "body"
+          widget: "markdown"
+  #posts collection
   - name: "posts"
     label: "Posts"
     folder: "content/posts/"
@@ -154,6 +230,7 @@ collections:
         name: "body"
         widget: "markdown"
 
+  #front page collection
   - name: "frontpage"
     label: "Front page"
     delete: false
