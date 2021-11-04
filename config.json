@@ -3,13 +3,10 @@
   "twitter_account": "@SrArdilla23",
   "base_url": "https://wutali-nextjs-netlify-blog.netlify.app",
   "site_keywords": [
-    "Nextjs",
-    {
-      "keyword": "Netlify"
-    },
-    {
-      "keyword": "React"
-    }
+    {"keyword":"cdelgado" },
+    {"keyword":"tech" },
+    {"keyword":"software" },
+    {"keyword":"dev" }
   ],
   "site_description": "Carlos Delgado Guiberteau's personal website",
   "linkedin_account": "carlos-delgado-guiberteau-55a29415b",
