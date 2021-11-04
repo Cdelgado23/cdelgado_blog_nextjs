@@ -167,9 +167,9 @@ collections:
           displayFields:
             - "posts.*.title"
           valueField: "posts.*.slug"
-        - label: "Body"
-          name: "body"
-          widget: "markdown"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
   #posts collection
   - name: "posts"
     label: "Posts"
