@@ -151,7 +151,7 @@ collections:
         field:
           label: Technology
           name: technology
-          widget: String
+          widget: "string"
       - label: "Related Posts"
         label_singular: "Related Post"
         name: "related_posts"
