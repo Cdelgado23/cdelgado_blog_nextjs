@@ -84,3 +84,10 @@ export function listPostContent(
     .filter((it) => !tag || (it.tags && it.tags.includes(tag)))
     .slice((page - 1) * limit, page * limit);
 }
+
+
+export function getPostTitle(slug: string): string{
+    return fetchPostContent()
+        .find(p=> p.slug ==slug)
+        .title;
+}

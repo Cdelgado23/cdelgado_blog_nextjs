@@ -51,7 +51,7 @@ collections:
             name: "email_direction"
             widget: "string"
 
-  #meta collection
+#meta collection
   - name: "meta"
     label: "Meta"
     delete: false
@@ -98,6 +98,7 @@ collections:
                 widget: "string"
                 hint: "Tag name for displaying on the site"
 
+#projects collection
   - name: "projects"
     label: "Projects"
     folder: "content/projects/"
@@ -113,6 +114,9 @@ collections:
         widget: "string"
       - label: "Title"
         name: "title"
+        widget: "string"
+      - label: "Summary"
+        name: "summary"
         widget: "string"
       - label: "Featured Image"
         name: "thumbnail"
