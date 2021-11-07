@@ -32,7 +32,7 @@ export default function ProjectItem({ project }: Props) {
         <div className={Styles.overlay}>
           <div className={Styles.overlayText}>
           <h2 className={Styles.overlayContent}>{project.title}</h2>
-            <p style={{padding: "0 1rem"}}>{project.summary}</p>
+            <p style={{padding: "0 1rem", margin:"0 0 1rem 0"}}>{project.summary}</p>
             <div style={{display:"flex", flexDirection:"row", flexWrap:"wrap", gap:"0.5rem", justifyContent: "center"}}>
               {project.technologies.map((it, i) => (
                   <Chip label={it} color= "warning"/>
