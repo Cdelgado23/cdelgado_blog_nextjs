@@ -140,8 +140,9 @@ export default function ProjectLayout({
                 :
                 ""
             }
-
-
+            <Typography variant="h6" gutterBottom component="div">
+                Other information
+            </Typography>
             <div className={styles.content}>{children}</div>
 
         </article>
