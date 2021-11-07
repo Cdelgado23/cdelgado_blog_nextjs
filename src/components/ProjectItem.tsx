@@ -4,8 +4,9 @@ import Link from "next/link";
 import { parseISO } from "date-fns";
 
 import Styles from "./styles/PostItem.module.css"
-import { Paper } from '@mui/material';
+import {Chip, Paper} from '@mui/material';
 import {ProjectContent} from "../lib/projects";
+import React from "react";
 
 
 type Props = {
@@ -30,8 +31,13 @@ export default function ProjectItem({ project }: Props) {
         </Paper>
         <div className={Styles.overlay}>
           <div className={Styles.overlayText}>
-          <h2 >{project.title}</h2>
-            <p>{project.summary}</p>
+          <h2 className={Styles.overlayContent}>{project.title}</h2>
+            <p style={{padding: "0 1rem"}}>{project.summary}</p>
+            <div style={{display:"flex", flexDirection:"row", flexWrap:"wrap", gap:"0.5rem", justifyContent: "center"}}>
+              {project.technologies.map((it, i) => (
+                  <Chip label={it} color= "warning"/>
+              ))}
+            </div>
           </div>
         </div>
       </a>

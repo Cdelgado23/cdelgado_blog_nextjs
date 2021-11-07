@@ -29,8 +29,8 @@ export default function PostItem({ post }: Props) {
         </Paper>
         <div className={Styles.overlay}>
           <div className={Styles.overlayText}>
-          <h2 >{post.title}</h2>
-            <p>{post.summary}</p>
+          <h2 className={Styles.overlayContent}>{post.title}</h2>
+            <p className={Styles.overlayContent}>{post.summary}</p>
           </div>
         </div>
       </a>

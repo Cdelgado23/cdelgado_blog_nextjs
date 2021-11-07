@@ -91,17 +91,24 @@ export default function ProjectLayout({
                 </Typography>
             </div>
             <Divider/>
-            <div style={{margin: "1rem 0 1rem 0", display:"flex", flexDirection: "column"}}>
-                <Typography variant="h6" gutterBottom component="div">
-                    Repository
-                </Typography>
-                <Link href={repository}>
-                    <a>
-                        <GitHubIcon style={{ width: "2.5rem", height: "2.5rem" }} fill={"#FFFF"} />
-                    </a>
-                </Link>
-            </div>
-            <Divider/>
+            {
+                !(repository==="")?
+                <>
+                <div style={{margin: "1rem 0 1rem 0", display: "flex", flexDirection: "column", width:"fit-content"}}>
+                    <Typography variant="h6" gutterBottom component="div">
+                        Repository
+                    </Typography>
+                    <Link href={repository}>
+                        <a>
+                            <GitHubIcon style={{width: "2.5rem", height: "2.5rem"}} fill={"#FFFF"}/>
+                        </a>
+                    </Link>
+                </div>
+                <Divider/>
+                </>
+                :
+                ""
+            }
             <div style={{margin: "1rem 0 1rem 0", display:"flex", flexDirection: "column", gap:"1rem"}}>
                 <Typography variant="h6" gutterBottom component="div" style={{margin:"0"}}>
                     Technologies
@@ -113,19 +120,27 @@ export default function ProjectLayout({
                 </div>
             </div>
             <Divider/>
-            <div style={{margin: "1rem 0 1rem 0", display:"flex", flexDirection: "column", gap:"1rem"}}>
-                <Typography variant="h6" gutterBottom component="div" style={{margin:"0"}}>
-                    Related Posts
-                </Typography>
-                {related_posts.map((it, i) => (
-                    <Link href={"/posts/"+ it.slug}>
-                        <a>
-                            {it.title}
-                        </a>
-                    </Link>
-                ))}
-            </div>
-            <Divider/>
+            {
+                related_posts.length>0?
+                    <>
+                    <div style={{margin: "1rem 0 1rem 0", display:"flex", flexDirection: "column", gap:"1rem"}}>
+                        <Typography variant="h6" gutterBottom component="div" style={{margin:"0"}}>
+                            Related Posts
+                        </Typography>
+                        {related_posts.map((it, i) => (
+                            <Link href={"/posts/"+ it.slug}>
+                                <a>
+                                    {it.title}
+                                </a>
+                            </Link>
+                        ))}
+                    </div>
+                    <Divider/>
+                    </>
+                :
+                ""
+            }
+
 
             <div className={styles.content}>{children}</div>
 
