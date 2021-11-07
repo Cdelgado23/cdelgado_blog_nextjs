@@ -14,7 +14,7 @@ export default function PostItem({ post }: Props) {
   return (
     <Link href={"/posts/" + post.slug} >
       <a className={Styles.anchor}>
-        <Paper elevation={3} className={Styles.paperCard}>
+        <Paper elevation={3} className={Styles.paperCard} style={{transition: ".5s ease"}}>
           {
             post.thumbnail != null ?
               <img src={post.thumbnail} className={`${Styles.postImg}`}></img>

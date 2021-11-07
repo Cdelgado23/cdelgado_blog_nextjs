@@ -16,7 +16,7 @@ export default function ProjectItem({ project }: Props) {
   return (
     <Link href={"/projects/" + project.slug} >
       <a className={Styles.anchor}>
-        <Paper elevation={3} className={Styles.paperCard}>
+        <Paper elevation={3} className={Styles.paperCard} style={{transition: ".5s ease"}}>
           {
             project.thumbnail != null ?
               <img src={project.thumbnail} className={`${Styles.postImg}`}/>
