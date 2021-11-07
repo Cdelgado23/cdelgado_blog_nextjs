@@ -162,6 +162,7 @@ collections:
         name: "related_posts"
         widget: list
         summary: "{{fields.related_posts}}"
+        required: false
         field:
           label: "Related post"
           name: related_post
