@@ -21,6 +21,7 @@ type Props = {
   start_date: string;
   end_date: string;
   slug: string;
+  summary: string;
   technologies: string[];
   related_posts: { title: string, slug: string }[];
   repository: string;
@@ -41,6 +42,7 @@ export default function Project({
   start_date,
   end_date,
   slug,
+  summary,
   technologies,
   related_posts,
   repository,
@@ -55,6 +57,7 @@ export default function Project({
       start_date={parseISO(start_date)}
       end_date={parseISO(end_date)}
       slug={slug}
+      summary={summary}
       technologies={technologies}
       related_posts={related_posts}
       repository={repository}
@@ -74,11 +77,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-type postLink={
-  title: string,
-  slug: string
-};
-
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params.project as string;
   const source = fs.readFileSync(slugToProjectContent[slug].fullPath, "utf8");
@@ -96,6 +94,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       end_date: data.end_date,
       repository: data.repository,
       slug: data.slug,
+      summary: data.summary,
       description: "",
       technologies: data.technologies,
       related_posts: postLinks,

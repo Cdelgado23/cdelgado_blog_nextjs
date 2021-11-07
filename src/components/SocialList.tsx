@@ -43,7 +43,7 @@ export function SocialList({ }) {
 
       <a
         title={config.email_direction}
-        href={config.email_direction}
+        href={"mailto: " + config.email_direction}
         target="_blank"
         rel="noopener"
       >

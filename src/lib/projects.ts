@@ -51,11 +51,13 @@ export function fetchProjectContent(): ProjectContent[] {
                 fullPath: string;
             };
             matterData.fullPath = fullPath;
-
             const slug = fileName.replace(/\.mdx$/, "");
 
             // Validate slug string
             if (matterData.slug !== slug) {
+                console.warn("\n Path slug: " + slug + " != " + "slug in file" + matterData.slug);
+                console.warn("Maybe the slug changed in the file content, but the filename remained the same.");
+                console.warn("If that is the case, try to rename the file to match the slug stored in the file.");
                 throw new Error(
                     "slug field not match with the path of its content source"
                 );

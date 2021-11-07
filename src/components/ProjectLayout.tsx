@@ -12,14 +12,16 @@ import { SocialList } from "./SocialList";
 import { getAuthor } from "../lib/authors";
 
 import Link from "next/link";
-import {Box, Divider} from "@mui/material";
+import {Box, Chip, Divider} from "@mui/material";
 import Typography from '@mui/material/Typography';
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 type Props = {
     title: string;
     start_date: Date;
     end_date: Date;
     slug: string;
+    summary: string;
     technologies: string[];
     related_posts: { title:string, slug: string }[];
     repository: string;
@@ -32,6 +34,7 @@ export default function ProjectLayout({
     start_date,
     end_date,
     slug,
+    summary,
     author,
     technologies,
     related_posts,
@@ -71,43 +74,61 @@ export default function ProjectLayout({
         <article>
           <header>
             <h1>{title}</h1>
-              <Divider/>
-
-              <Typography variant="h5" gutterBottom component="div">
-                  h2. Heading
-              </Typography>
-
-
-
-              <div className={"metadata"}>
-                <Date date={start_date}/> - <Date date={end_date}/>
+            <div className={"metadata"} style={{margin:"0 0 1rem 0" }}>
+                <div>
+                    <Date date={start_date}/> - <Date date={end_date}/>
+                </div>
+                <Author author={getAuthor(author)} />
             </div>
-            <Author author={getAuthor(author)} />
-            <div>
-                Repository: {repository}
-            </div>
-            <ul>
-                {related_posts.map((it, i) => (
-                    <li>
-                        <Link href={"/posts/"+ it.slug}>
-                            <a>
-                                {it.title}
-                            </a>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
           </header>
+            <Divider/>
+            <div style={{margin: "1rem 0 1rem 0"}}>
+                <Typography variant="h6" gutterBottom component="div">
+                    Summary
+                </Typography>
+                <Typography variant="subtitle1" gutterBottom component="div">
+                    {summary}
+                </Typography>
+            </div>
+            <Divider/>
+            <div style={{margin: "1rem 0 1rem 0", display:"flex", flexDirection: "column"}}>
+                <Typography variant="h6" gutterBottom component="div">
+                    Repository
+                </Typography>
+                <Link href={repository}>
+                    <a>
+                        <GitHubIcon style={{ width: "2.5rem", height: "2.5rem" }} fill={"#FFFF"} />
+                    </a>
+                </Link>
+            </div>
+            <Divider/>
+            <div style={{margin: "1rem 0 1rem 0", display:"flex", flexDirection: "column", gap:"1rem"}}>
+                <Typography variant="h6" gutterBottom component="div" style={{margin:"0"}}>
+                    Technologies
+                </Typography>
+                <div style={{display:"flex", flexDirection:"row", flexWrap:"wrap", gap:"0.5rem"}}>
+                    {keywords.map((it, i) => (
+                        <Chip label={it} variant="outlined" />
+                    ))}
+                </div>
+            </div>
+            <Divider/>
+            <div style={{margin: "1rem 0 1rem 0", display:"flex", flexDirection: "column", gap:"1rem"}}>
+                <Typography variant="h6" gutterBottom component="div" style={{margin:"0"}}>
+                    Related Posts
+                </Typography>
+                {related_posts.map((it, i) => (
+                    <Link href={"/posts/"+ it.slug}>
+                        <a>
+                            {it.title}
+                        </a>
+                    </Link>
+                ))}
+            </div>
+            <Divider/>
 
-          <div className={styles.content}>{children}</div>
+            <div className={styles.content}>{children}</div>
 
-          <ul className={"tag-list"}>
-            {keywords.map((it, i) => (
-              <li key={i}>
-                it
-              </li>
-            ))}
-          </ul>
         </article>
         <footer>
           <div className={"social-list"}>

@@ -137,6 +137,7 @@ collections:
       - label: "Repository"
         name: "repository"
         widget: "string"
+        required: false
       - label: Author
         name: "author"
         widget: relation
@@ -172,6 +173,7 @@ collections:
       - label: "Body"
         name: "body"
         widget: "markdown"
+        required: false
   #posts collection
   - name: "posts"
     label: "Posts"
