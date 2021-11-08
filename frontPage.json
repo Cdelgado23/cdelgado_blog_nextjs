@@ -10,9 +10,9 @@
     {
       "card_slug": "to_come",
       "card_title": "To come...",
-      "card_subtitle": "Personal Website",
-      "card_summary": "Pre-rendered static web site made with Next.js.",
-      "card_image": "/images/nextjs_netlify_cms.png"
+      "card_subtitle": "AOP with Spring",
+      "card_summary": "Small article about the fundamentals of Aspect Oriented Programming with Java. ",
+      "card_image": "/images/spring_aop.png"
     }
   ]
 }
