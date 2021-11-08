@@ -1,8 +1,4 @@
 authors:
-  - slug: wutali
-    name: Takahiro Fujiwara
-    introduction: Co-founder and CTO at Fuller, Inc. / Software & Data Engineer /
-      Python / Golang / React
   - slug: cdelgado
     name: Carlos Delgado
     introduction: >-
@@ -11,3 +7,5 @@ authors:
       Owner of this site. 
 
       Interested in every aspect of software development, from coding, to infrastructure, to architecture.
+
+      Front end / Back end / CI & CD

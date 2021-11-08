@@ -17,9 +17,9 @@ export default function PostItem({ post }: Props) {
         <Paper elevation={3} className={Styles.paperCard} style={{transition: ".5s ease"}}>
           {
             post.thumbnail != null ?
-              <img src={post.thumbnail} className={`${Styles.postImg}`}></img>
+              <img src={post.thumbnail} className={`${Styles.postImg}`}/>
               :
-              <div className={`${Styles.postImg} ${Styles.imgPlaceholder}`}></div>
+              <div className={`${Styles.postImg} ${Styles.imgPlaceholder}`}/>
           }
 
           <div className={Styles.content}>
