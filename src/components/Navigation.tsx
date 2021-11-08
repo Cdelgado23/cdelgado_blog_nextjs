@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Burger from "./Burger";
 import { useState } from "react";
 
 import styles from './styles/Navigation.module.css';
@@ -21,7 +20,7 @@ export default function Navigation() {
             [styles.active]: router.pathname === "/"
           })}
           >
-            about
+            home
           </a>
         </Link>
       </li>
