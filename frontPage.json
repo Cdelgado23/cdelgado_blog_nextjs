@@ -10,8 +10,8 @@
     {
       "card_slug": "to_come",
       "card_title": "To come...",
-      "card_subtitle": "Aspect Oriented Programming with Spring",
-      "card_summary": "Small article about AOP with Java to talk about its fundamentals. ",
+      "card_subtitle": "AOP with Spring",
+      "card_summary": "Small article about the fundamentals of Aspect Oriented Programming with Java. ",
       "card_image": "/images/spring_aop.png"
     }
   ]
