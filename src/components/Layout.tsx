@@ -14,6 +14,7 @@ export default function Layout({ children }: Props) {
 
     <div className="root">
       <Head>
+        <meta name="google-site-verification" content="_o6L31YthqxI08dlJwAhDSNYj1V2bSJe1dCC2qIoMIM" />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
