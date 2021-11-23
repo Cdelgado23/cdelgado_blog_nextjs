@@ -8,11 +8,11 @@
       "card_slug": "working_on"
     },
     {
-      "card_slug": "to_come",
-      "card_title": "To come...",
-      "card_subtitle": "AOP with Spring",
-      "card_summary": "Small article about the fundamentals of Aspect Oriented Programming with Java. ",
-      "card_image": "/images/spring_aop_1.1.png"
+      "card_slug": "learning",
+      "card_title": "Learning...",
+      "card_subtitle": "Microservices patterns",
+      "card_summary": "Learning about several patterns to mitigate the problems introduced by the microservices architecture.",
+      "card_image": "/images/microservices_1.1.png"
     }
   ]
 }
