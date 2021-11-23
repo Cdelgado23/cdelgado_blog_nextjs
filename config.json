@@ -1,12 +1,20 @@
 {
-  "site_title": "Cdelgado's place",
-  "twitter_account": "@SrArdilla23",
+  "site_title": "Carlos Delgado",
+  "twitter_account": "@SqrrelEngineer",
   "base_url": "https://wutali-nextjs-netlify-blog.netlify.app",
   "site_keywords": [
-    {"keyword":"cdelgado" },
-    {"keyword":"tech" },
-    {"keyword":"software" },
-    {"keyword":"dev" }
+    {
+      "keyword": "cdelgado"
+    },
+    {
+      "keyword": "tech"
+    },
+    {
+      "keyword": "software"
+    },
+    {
+      "keyword": "dev"
+    }
   ],
   "site_description": "Carlos Delgado Guiberteau's personal website",
   "linkedin_account": "carlos-delgado-guiberteau-55a29415b",
