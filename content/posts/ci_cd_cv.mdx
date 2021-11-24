@@ -1,0 +1,66 @@
+---
+slug: ci_cd_cv
+title: Publicación de cambios en CV a través de CI/CD
+thumbnail: /images/ci_cd_cv_4.3.png
+summary: Desencadenar el despliegue de cambios en el CV (LaTex) a través de
+  procesos de CI/CD (Github Actions).
+date: 2021-11-24
+author: cdelgado
+tags:
+  - ci_cd
+  - spanish
+---
+Hace ya un tiempo, me encontré enfrente de mi CV con la urgente necesidad de modificarlo para enviarlo a un proceso en el que lo requería. Era una tarea que odiaba (y mucho) , y como consecuencia, mi CV solo se actualizaba bajo fuerza mayor.
+
+En aquel momento, el documento estaba elaborado mediante cajitas de colores y bloques de texto en un documento de Word. No era consciente de los muchos problemas y quebraderos de cabeza que me daba este formato. Ahora, cuando pienso en ese endemoniado fichero, lo recuerdo con añoranza, pero os aseguro que nada en este mundo me haría volver al docx. 
+
+## Problemas que encontraba
+
+Voy al grano: 
+
+* El cambio más temido era eliminar algún bloque para adaptar el contenido del CV. Esto suponía prácticamente rehacer el documento. 
+* Vivía con miedo a perder alguna versión del CV. Tenía múltiples copias del documento, así como otras tantas en el disco duro externo. Muchas veces me encontré rehaciéndolo al no encontrar la versión más actual, para encontrarla después de unos días en un fichero mal nombrado. 
+* Eventualmente encontraba problemas con la gestión del layout del documento. Las cajas se descuadraban y tenía que luchar con Word para alinearlas de nuevo. 
+
+Seguro que podría seguir listando problemas, pero no quiero seguir rememorando esos tiempo. Quiero contaros que tengo preparado ahora mismo. 
+
+## CV Como Código
+
+Continuando con la obsesión que tenemos los informáticos de expresar todo como código, decidí pasarme a **LaTeX**. Tenía mis dudas, pero *oooh boy....*
+
+Tengo que aclarar que no soy ni mucho menos experto en este tema, pero estamos en pleno siglo XXI, e internet está lleno de recursos, y en este caso de plantillas. 
+
+Utilizando LaTeX, puedo generar un fichero pdf que se puede visualizar en prácticamente cualquier dispositivo. 
+
+## Disponibilización del CV
+
+Cuando monté este sitio web, tenía claro que quería dejar un hueco para mi CV. E
+
+```yaml
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
+      - name: Rename cv file
+        run: |
+          mv main.pdf CV_file.pdf
+
+```
+
+```yaml
+      - name: Pushes cv pdf file
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source_file: 'CV_file.pdf'
+          destination_repo: 'githubUser/github_repo'
+          destination_branch: 'branchName'
+          destination_folder: 'public'
+          user_email: 'user_email@email.com'
+          user_name: 'user_name'
+          commit_message: 'ci: deployed from code repository'
+```
