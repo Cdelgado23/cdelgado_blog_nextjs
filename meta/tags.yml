@@ -1,3 +1,7 @@
 tags:
   - slug: document
     name: document
+  - slug: ci_cd
+    name: CI/CD
+  - slug: spanish
+    name: Spanish
