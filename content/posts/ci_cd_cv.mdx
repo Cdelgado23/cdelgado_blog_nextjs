@@ -22,7 +22,7 @@ Voy al grano:
 * Vivía con miedo a perder alguna versión del CV. Tenía múltiples copias del documento, así como otras tantas en el disco duro externo. Muchas veces me encontré rehaciéndolo al no encontrar la versión más actual, para encontrarla después de unos días en un fichero mal nombrado. 
 * Eventualmente encontraba problemas con la gestión del layout del documento. Las cajas se descuadraban y tenía que luchar con Word para alinearlas de nuevo. 
 
-Seguro que podría seguir listando problemas, pero no quiero seguir rememorando esos tiempo. Quiero contaros que tengo preparado ahora mismo. 
+Seguro que podría seguir listando problemas, pero no quiero seguir rememorando esos tiempo. Quiero contaros cómo lo tengo montado ahora mismo. 
 
 ## CV Como Código
 
@@ -32,9 +32,39 @@ Tengo que aclarar que no soy ni mucho menos experto en este tema, pero estamos e
 
 Utilizando LaTeX, puedo generar un fichero pdf que se puede visualizar en prácticamente cualquier dispositivo. 
 
-## Disponibilización del CV
+Añadir o eliminar cualquier bloque se reduce a cambios en el código fuente, ya que la distribución del documento y la apariencia visual se define mediante código. 
 
-Cuando monté este sitio web, tenía claro que quería dejar un hueco para mi CV. E
+El documento se puede versionar fácilmente a través de **git**.
+
+Todos los problemas se solucionan automágicamente.
+
+## Publicar el CV
+
+Cuando monté este sitio web, tenía claro que quería dejar un hueco para [mi CV](https://cdelgadoguiberteau.netlify.app/cv). El documento que se muestra en la página web, está incluido en el repositorio del código de la misma, y se incrusta en la página que le corresponde al construir la aplicación con **Nextjs**. Esto significa que para introducir algún cambio en el CV que se muestra en la página, es necesario actualizar el fichero del repositorio de la página web, y regenerarla. 
+
+Por suerte, ya tengo montado el proceso de despliegue continuo de la página, por lo que eso no supondrá ningún problema. 
+
+Los pasos que he tenido que preparar para llegar a la publicación del CV en el sitio web son dos: 
+
+1. Crear el repositorio del código fuente y los recursos utilizados en el CV.
+2. Crear la pipeline de CI/CD del fichero
+
+Sencillo, ¿verdad? :D
+
+## Pipeline Github Actions
+
+La Pipeline es muy sencilla, lleva a cabo cuatro pasos:
+
+1. Checkout del código.
+2. Generación del pdf.
+3. Cambio de nombre del fichero pdf.
+4. Publicación del pdf en el repositorio de la página web.
+
+Tras completar el paso cuatro, se dispara la generación del sitio web. 
+
+### Implementación de la pipeline
+
+A continuación añado el fragmento de la pipeline que contiene los pasos de la misma:
 
 ```yaml
     steps:
@@ -47,10 +77,6 @@ Cuando monté este sitio web, tenía claro que quería dejar un hueco para mi CV
       - name: Rename cv file
         run: |
           mv main.pdf CV_file.pdf
-
-```
-
-```yaml
       - name: Pushes cv pdf file
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
@@ -64,3 +90,24 @@ Cuando monté este sitio web, tenía claro que quería dejar un hueco para mi CV
           user_name: 'user_name'
           commit_message: 'ci: deployed from code repository'
 ```
+
+* He cambiado los valores de las variables con datos genéricos, por lo que para implementarlo de forma similar, habría que personalizar dichas variables.
+* Para llevar a cabo el despliegue en otro repositorio, es necesario crear un token con los permisos de repo, y añadirla como secreto del repositorio donde se encuentra el código del CV.
+
+## Consideraciones del proceso implementado
+
+Bueno, la automagia tiene su precio. 
+
+Si, cuando publico un cambio del CV, se dispara la pipeline de la página web. Es el precio a pagar por pre-generar todas las páginas con Nextjs.  
+
+Si, hay otras formas. Nextjs da la opción de renderizado en el lado del servidor alguna de las páginas. Podríamos disponibilizar el fichero pdf en algún otro lugar, y referenciarlo desde la página del CV.
+
+Si, es posible que lo cambie en algún momento. No obstante, y dado que la capa gratuita de los servicios que utilizo son lo suficientemente generosas, a día de hoy no tengo dicha necesidad. 
+
+
+
+## Recursos
+
+* Introducción a Github Actions: <https://docs.github.com/en/actions/quickstart>
+* Github Action for LaTeX: <https://github.com/marketplace/actions/github-action-for-latex>
+* Github Action Push File: <https://github.com/marketplace/actions/push-a-file-to-another-repository>
