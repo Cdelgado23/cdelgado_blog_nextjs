@@ -1,0 +1,119 @@
+---
+slug: ci_cd_cv
+title: Publicación de cambios en CV a través de CI/CD
+thumbnail: /images/ci_cd_cv_4.3.png
+summary: Desencadenar el despliegue de cambios en el CV (LaTex) a través de
+  procesos de CI/CD (Github Actions).
+date: 2021-11-24
+author: cdelgado
+tags:
+  - ci_cd
+  - spanish
+---
+Hace ya un tiempo, me encontré enfrente de mi CV con la urgente necesidad de modificarlo para enviarlo a un proceso en el que lo requería. Era una tarea que odiaba (mucho) , y como consecuencia, mi CV solo se actualizaba bajo fuerza mayor.
+
+En aquel momento, el documento estaba elaborado mediante cajitas de colores y bloques de texto en un documento de Word. No era consciente de los muchos problemas y quebraderos de cabeza que me daba este formato. Ahora, cuando pienso en ese endemoniado fichero, lo recuerdo con añoranza, pero os aseguro que nada en este mundo me haría volver al docx. 
+
+## Problemas que encontraba
+
+Voy al grano: 
+
+* El cambio más temido era eliminar algún bloque para adaptar el contenido del CV. Esto suponía prácticamente rehacer el documento. 
+* Vivía con miedo a perder alguna versión del CV. Tenía múltiples copias del documento, así como otras tantas en el disco duro externo. Muchas veces me encontré rehaciéndolo al no encontrar la versión más actual, para encontrarla después de unos días en un fichero mal nombrado. 
+* Eventualmente encontraba problemas con la gestión del layout del documento. Las cajas se descuadraban y tenía que luchar con Word para alinearlas de nuevo. 
+
+Seguro que podría listar más problemas, pero no quiero seguir rememorando esos tiempo. Quiero contaros cómo lo tengo montado ahora mismo. 
+
+## CV Como Código
+
+Continuando con la obsesión que tenemos los informáticos de expresar todo como código, decidí pasarme a **LaTeX**. Tenía mis dudas, pero *oooh boy....*
+
+Tengo que aclarar que no soy ni mucho menos experto en este tema, pero estamos en pleno siglo XXI, e internet está lleno de recursos, y en este caso de plantillas. 
+
+Utilizando LaTeX, puedo generar un fichero pdf que se puede visualizar en prácticamente cualquier dispositivo. 
+
+Añadir o eliminar cualquier bloque se reduce a cambios en el código fuente, ya que la distribución del documento y la apariencia visual se define mediante código. 
+
+El documento se puede versionar fácilmente a través de **git**.
+
+Todos los problemas se solucionan automágicamente.
+
+## Publicar el CV
+
+Cuando monté este sitio web, tenía claro que quería dejar un hueco para [mi CV](https://cdelgadoguiberteau.netlify.app/cv). El documento que se muestra en la página web, está incluido en el repositorio del código de la misma, y se incrusta en la página que le corresponde al construir la aplicación con **Nextjs**. Esto significa que para introducir algún cambio en el CV que se muestra en la página, es necesario actualizar el fichero del repositorio de la página web, y regenerarla. 
+
+Por suerte, ya tengo montado el proceso de despliegue continuo de la página, por lo que eso no supondrá ningún problema. 
+
+Los pasos que he tenido que preparar para llegar a la publicación del CV en el sitio web son dos: 
+
+1. Crear el repositorio del código fuente y los recursos utilizados en el CV.
+2. Crear la pipeline de CI/CD del fichero
+
+Sencillo, ¿verdad? :D
+
+## Pipeline Github Actions
+
+La Pipeline es muy sencilla, lleva a cabo cuatro pasos:
+
+1. Checkout del código.
+2. Generación del pdf.
+3. Cambio de nombre del fichero pdf.
+4. Publicación del pdf en el repositorio de la página web.
+
+Tras completar el paso cuatro, se dispara la generación del sitio web. 
+
+### Implementación de la pipeline
+
+A continuación añado el fragmento de la pipeline que contiene los pasos de la misma:
+
+```yaml
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
+      - name: Rename cv file
+        run: |
+          mv main.pdf CV_file.pdf
+      - name: Pushes cv pdf file
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source_file: 'CV_file.pdf'
+          destination_repo: 'githubUser/github_repo'
+          destination_branch: 'branchName'
+          destination_folder: 'public'
+          user_email: 'user_email@email.com'
+          user_name: 'user_name'
+          commit_message: 'ci: deployed from code repository'
+```
+
+* He cambiado los valores de las variables con datos genéricos, por lo que para implementarlo de forma similar, habría que personalizar dichas variables.
+* Para llevar a cabo el despliegue en otro repositorio, es necesario crear un token con los permisos de repo, y añadirla como secreto del repositorio donde se encuentra el código del CV.
+
+## Consideraciones
+
+Bueno, la automagia tiene su precio. 
+
+Si, cuando publico un cambio del CV, se dispara la pipeline de la página web. Es el precio a pagar por pre-generar todas las páginas con Nextjs.  
+
+Si, hay otras formas. Nextjs da la opción de renderizado en el lado del servidor alguna de las páginas. Podríamos disponibilizar el fichero pdf en algún otro lugar, y referenciarlo desde la página del CV.
+
+Si, es posible que lo cambie en algún momento. No obstante, y dado que la capa gratuita de los servicios que utilizo son lo suficientemente generosas, a día de hoy no tengo dicha necesidad. 
+
+## Conclusiones
+
+La receta que explico en este post no se limita a publicar el fichero en una página web. Pensad las múltiples formas de las que podéis distribuir un fichero hoy en día, solo hay que darle un poco al coco. 
+
+Seguro que el proceso no es todo lo optimo que podría llegar a ser. Estaré encantado de escuchar cualquier sugerencia a través de cualquiera de los canales que publico en este sitio web, por lo que no dudéis en poneros en contacto conmigo. 
+
+Un saludo a todos, y muchas gracias por llegar hasta aquí! 😃
+
+## Recursos
+
+* Introducción a Github Actions: <https://docs.github.com/en/actions/quickstart>
+* Github Action for LaTeX: <https://github.com/marketplace/actions/github-action-for-latex>
+* Github Action Push File: <https://github.com/marketplace/actions/push-a-file-to-another-repository>
