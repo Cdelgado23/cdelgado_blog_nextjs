@@ -1,0 +1,55 @@
+---
+slug: ci_cd_enviroment_0
+title: CI/CD Enviroment
+thumbnail: /images/ci_cd_worflow_4.3.png
+summary: "Vista general del sistema de integración y despliegue continuo. Desde
+  que el código llega a la rama, hasta que se disponibiliza en el entorno. "
+date: 2021-12-16
+author: cdelgado
+tags:
+  - ci_cd
+---
+En las últimas semanas he estado explorando algunas tecnologías que ya había utilizado como desarrollador, pero  desde un enfoque distinto. Se trata de todo el stack necesario para convertir un commit en un despliegue en un determinado entorno. 
+
+He escogido un conjunto de tecnologías cuyo uso está bastante generalizado, aunque seguro que para algunas de ellas hay otras opciones. Hablo de las siguientes herramientas:
+
+* Open LDAP
+* Jenkins
+* Nexus
+* Sonarqube
+* Cucumber y otros frameworks de testing
+* Kubernetes
+* Docker y Docker Compose
+
+En este caso, quería explorar como era la administración y la configuración de dichas herramientas.
+
+## Despliegue de las herramientas
+
+El despliegue de las herramientas involucradas en el proceso se ha llevado a cabo a través de Docker Compose. A través de este fichero, puedo levantar todo el stack sin muchas complicaciones. Los despliegues resultantes del proceso se llevan a cabo en un Cluster de kubernetes, en el cual, además, se ejecutan los agentes de Jenkins cuando se dispara un proceso en el nodo controlador. 
+
+![Organización del despliegue de las herramientas](/images/devops_stack_deploy_strategy.png "Organización del despliegue de las herramientas")
+
+Es importante tener en cuenta que este despliegue es una simplificación de las arquitecturas que se suele emplear en muchas ocasiones. Normalmente dispondremos de varios entornos de pruebas en los que desplegaremos nuestro software antes de llegar al entorno productivo. Además, para aquellos servicios de los que esperamos una alta disponibilidad, dispondremos de un Cluster propio en los que se ejecutarán dichos procesos, en lugar de compartir entorno.
+
+## Workflow
+
+Las herramientas que empleamos están especializadas en el desarrollo de tareas muy concretas. Todas ellas se complementan para establecer mecanismos de control que permitan llevar el software a los correspondientes entornos de una forma segura y automatizada. 
+
+En el siguiente diagrama se explica cómo el Software llega desde la máquina del desarrollador al entorno donde se desea desplegar el software (en este caso un Cluster de Kubernetes). 
+
+![Workflow](/images/devops_stack_workflow.png "Flujo de trabajo de las ")
+
+En la Pipeline que ejecuta el agente de Jenkins se realizan diversos controles de calidad. Además de ejecutar los tests desarrollados, se lleva a cabo un análisis del código y de la cobertura de código del mismo haciendo uso de Sonarqube.
+
+El artefacto generado se sube al correspondiente repositorio en Nexus, y el despliegue es gestionado mediante Ansible.
+
+## Autenticación y autorización
+
+Queda una pieza por nombrar: El servidor LDAP. A través de este servidor se lleva a cabo la gestión de los usuarios y los permisos. De esta forma se centraliza está información y se dispone de una sola fuente de información. 
+
+## TL;DR
+
+* Sistema de CI/CD.
+* En el proceso intervienen múltiples herramientas especializadas.
+* El código se analiza, y para llevar a cabo el despliegue debe superar unos controles de calidad. 
+* La gestión de los usuarios y los permisos se centralizan en un único punto.
