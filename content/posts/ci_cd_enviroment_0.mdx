@@ -9,8 +9,6 @@ author: cdelgado
 tags:
   - ci_cd
 ---
-
-
 En las últimas semanas he estado explorando algunas tecnologías que ya había utilizado como desarrollador, pero  desde un enfoque distinto. Se trata de todo el stack necesario para convertir un commit en un despliegue en un determinado entorno. 
 
 He escogido un conjunto de tecnologías cuyo uso está bastante generalizado, aunque seguro que para algunas de ellas hay otras opciones. Hablo de las siguientes herramientas:
@@ -23,7 +21,7 @@ He escogido un conjunto de tecnologías cuyo uso está bastante generalizado, au
 * Kubernetes
 * Docker y Docker Compose
 
-En este caso, quería explorar como era la administración y la configuración de dichas herramientas, por lo que escribiré una serie de entradas abordando algunos de los aspectos más interesantes que he encontrado. 
+En este caso, quería explorar como era la administración y la configuración de dichas herramientas.
 
 ## Despliegue de las herramientas
 
@@ -41,8 +39,10 @@ En el siguiente diagrama se explica cómo el Software llega desde la máquina de
 
 ![Workflow](/images/devops_stack_workflow.png "Flujo de trabajo de las ")
 
-
-
 En la Pipeline que ejecuta el agente de Jenkins se realizan diversos controles de calidad. Además de ejecutar los tests desarrollados, se lleva a cabo un análisis del código y de la cobertura de código del mismo haciendo uso de Sonarqube.
 
-El artefacto generado se disponibiliza en Nexus, y el despliegue es gestionado mediante Ansible.
+El artefacto generado se sube al correspondiente repositorio en Nexus, y el despliegue es gestionado mediante Ansible.
+
+## Autenticación y autorización
+
+Queda una pieza por nombrar: El servidor LDAP. A través de este servidor se lleva a cabo la gestión de los usuarios y los permisos. De esta forma se centraliza está información y se dispone de una sola fuente de información.
