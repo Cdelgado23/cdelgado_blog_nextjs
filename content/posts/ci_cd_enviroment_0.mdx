@@ -1,5 +1,5 @@
 ---
-slug: ci_cd_enviroment_0
+slug: ci_cd_enviroment
 title: CI/CD Enviroment
 thumbnail: /images/ci_cd_worflow_4.3.png
 summary: "Vista general de un sistema de integración y despliegue continuo.
@@ -26,11 +26,50 @@ En este caso, quería explorar como era la administración y la configuración d
 
 ## Despliegue de las herramientas
 
-El despliegue de las herramientas involucradas en el proceso se ha llevado a cabo a través de Docker Compose. A través de este fichero, puedo levantar todo el stack sin muchas complicaciones. Los despliegues resultantes del proceso se llevan a cabo en un Cluster de kubernetes, en el cual, además, se ejecutan los agentes de Jenkins cuando se dispara un proceso en el nodo controlador. 
+El despliegue de las herramientas involucradas en el proceso se ha llevado a cabo a través de Docker Compose. A través de este fichero, puedo levantar todo el stack sin muchas complicaciones. 
+
+```
+version: "3.9"
+services:
+  jenkins:
+    image: "jenkins:jcasc"
+    ports:
+      - "50000:50000"
+      ...
+    env_file:
+      - ./Enviroment_files/jenkins.env
+    volumes:
+      - ./Configuration/jenkins_casc.yaml:/var/jenkins_home/casc.yaml
+      ...
+    networks:
+      - dv_tools
+  openldap:
+    image: bitnami/openldap:2.5
+    volumes:
+      - 'openldap_data:/bitnami/openldap'
+      ...
+  sonarqube:
+      ...
+  nexus:
+      ...
+networks:
+  dv_tools:
+    driver: bridge
+
+volumes:
+  openldap_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: './Persistance/openldap_data'
+```
+
+Los despliegues resultantes del proceso se llevan a cabo en un Cluster de kubernetes, en el cual, además, se ejecutan los agentes de Jenkins cuando se dispara un proceso en el nodo controlador. 
 
 ![Organización del despliegue de las herramientas](/images/devops_stack_deploy_strategy.png "Organización del despliegue de las herramientas")
 
-Es importante tener en cuenta que este despliegue es una simplificación de las arquitecturas que se suele emplear en muchas ocasiones. Normalmente dispondremos de varios entornos de pruebas en los que desplegaremos nuestro software antes de llegar al entorno productivo. Además, para aquellos servicios de los que esperamos una alta disponibilidad, dispondremos de un Cluster propio en los que se ejecutarán dichos procesos, en lugar de compartir entorno.
+Es importante tener en cuenta que este despliegue es una simplificación de las arquitecturas que se suele emplear en muchas ocasiones. Normalmente dispondremos de varios entornos de pruebas en los que desplegaremos nuestro software antes de llegar al entorno de producción. Además, es probable que para algunos de los servicios dispongamos de un Cluster propio en los que se ejecutarán dichos procesos.
 
 ## Workflow
 
@@ -40,9 +79,9 @@ En el siguiente diagrama se explica cómo el Software llega desde la máquina de
 
 ![Workflow](/images/devops_stack_workflow.png "Flujo de trabajo de las ")
 
-En la Pipeline que ejecuta el agente de Jenkins se realizan diversos controles de calidad. Además de ejecutar los tests desarrollados, se lleva a cabo un análisis del código y de la cobertura de código del mismo haciendo uso de Sonarqube.
+En la Pipeline que ejecuta el agente de Jenkins se realizan diversos controles de calidad. Además de ejecutar los tests desarrollados, se lleva a cabo un análisis del código y de la cobertura del mismo haciendo uso de Sonarqube.
 
-El artefacto generado se sube al correspondiente repositorio en Nexus, y el despliegue es gestionado mediante Ansible.
+El artefacto generado se sube al correspondiente repositorio en Nexus, y el despliegue en Kubernetes es gestionado mediante Ansible.
 
 ## Autenticación y autorización
 
