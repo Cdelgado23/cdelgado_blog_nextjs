@@ -1,10 +1,10 @@
 {
   "information_cards": [
     {
-      "card_title": "Working on...",
-      "card_subtitle": "Enjoying my time :)",
-      "card_summary": "Focused on personal projects, but open to telework opportunities :)",
-      "card_image": "/images/smile_icon.png",
+      "card_title": "Working as ...",
+      "card_subtitle": "Full stack @ Orquest ",
+      "card_summary": ":)",
+      "card_image": "/images/orquest_logo.png",
       "card_slug": "working_on"
     },
     {
