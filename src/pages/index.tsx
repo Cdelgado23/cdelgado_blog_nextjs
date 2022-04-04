@@ -30,7 +30,7 @@ export default function Index({ cards }: Props) {
         </h1>
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", flexWrap: "wrap", gap: "1.5rem" }}>
           <Paper className={styles.profPic} elevation={3}>
-            <img src="/images/profile.jpg" alt="Profile picture" />
+            <img src="/images/profile.png" alt="Profile picture" />
           </Paper>
           <DataCard color='#FFFF' header="About me">
             <div className={styles.textList}>
