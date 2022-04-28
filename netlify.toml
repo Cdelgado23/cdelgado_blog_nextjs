@@ -1,3 +1,6 @@
 [build]
   publish = "dist"
   command = "npm run export"
+
+  environment = { NODE_VERSION = "16.13.2", NETLIFY_BUILD_DEBUG= true}
+  
